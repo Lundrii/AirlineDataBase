@@ -1,0 +1,128 @@
+drop database airlineDB;
+create database airlineDB;
+
+CREATE TABLE airplaneType(
+Company 	VARCHAR(20)		NOT NULL,
+AType 		VARCHAR(10) 	NOT NULL,
+MaxSeats 	INTEGER NOT NULL,
+PRIMARY KEY(AType));
+
+CREATE TABLE airline(
+ALName 		VARCHAR(40) NOT NULL,
+ALCode 		CHAR(3) NOT NULL,
+PRIMARY KEY(ALCODE));
+
+CREATE TABLE airplane(
+AID 		VARCHAR(10)		NOT NULL,
+BuildYear 	INTEGER		NOT NULL,
+OALCode		CHAR(3) 	NOT NULL,
+AType		VARCHAR(10) 	NOT NULL,
+PRIMARY KEY(AID),
+FOREIGN KEY(OALCode) REFERENCES airline(ALCode) ON DELETE CASCADE,
+FOREIGN KEY(AType) REFERENCES airplaneType(AType) ON DELETE CASCADE);
+
+CREATE TABLE airport(
+APCode 		CHAR(3) NOT NULL,
+APName  	VARCHAR(60) NOT NULL,
+City		VARCHAR(20) NOT NULL,
+Province 	VARCHAR(20) NOT NULL,
+PRIMARY KEY(APCode));
+
+CREATE TABLE flight(
+FNum		INTEGER NOT NULL,
+OALCode		CHAR(3) NOT NULL,
+AssAID		VARCHAR(10) NOT NULL,
+FDepSchedTime 	TIME NOT NULL,
+FDepActTime		TIME,
+FArrSchedTime	TIME NOT NULL,
+FArrActTime		TIME,
+DepAPCode		CHAR(3) NOT NULL,
+ArrAPCode		CHAR(3) NOT NULL,
+PRIMARY KEY(FNum, OALCode),
+FOREIGN KEY(OALCode) REFERENCES airline(ALCode) ON DELETE CASCADE,
+FOREIGN KEY(AssAID) REFERENCES airplane(AID) ON DELETE CASCADE,
+FOREIGN KEY(DepAPCode) REFERENCES airport(APCode) ON DELETE CASCADE,
+FOREIGN KEY(ArrAPCode) REFERENCES airport(APCode) ON DELETE CASCADE);
+
+CREATE TABLE flightDay(
+FALCode CHAR(3) NOT NULL,
+FNum INTEGER NOT NULL,
+FDay CHAR(9) NOT NULL,
+PRIMARY KEY(FDay,FNum,FALCode),
+FOREIGN KEY(FNum,FALCode) REFERENCES flight(FNum,OALCode) ON DELETE CASCADE);
+
+CREATE TABLE supports(
+SuppAType 	VARCHAR(10) NOT NULL,
+SuppAPCode 	CHAR(3) NOT NULL,
+PRIMARY KEY(SuppAType,SuppAPCode),
+FOREIGN KEY(SuppAType) REFERENCES airplaneType(AType) ON DELETE CASCADE,
+FOREIGN KEY(SuppAPCode) REFERENCES airport(APCode) ON DELETE CASCADE);
+
+insert into airplaneType values
+('Boeing', '737', 189),
+('Airbus', 'A220', 160),
+('Boeing', '747', 416),
+('Airbus', 'A300', 247)
+;
+
+insert into airline values
+('Air Canada', '014'),
+('Canadian Airlines', '018'),
+('Fedex Express', '023'),
+('American Airlines', '001'),
+('China Eastern Airlines', '781'),
+('China Southern Airlines', '784')
+;
+
+insert into airplane values
+('G-CAAA', 2001, '018', '737'),
+('G-CABC', 2006, '018', '747'),
+('G-IAAA', 2001, '014', '737'),
+('G-IABC', 2006, '018', '747'),
+('N100AB', 2001, '001', 'A300'),
+('N176NR', 2001, '023', 'A220'),
+('N324XY', 2005, '001', 'A300'),
+('N646RX', 2013, '023', 'A220')
+;
+
+insert into airport values
+('YYZ','Toronto Pearson International Airport', 'Toronto', 'Ontario'),
+('YVR','Vancouver International Airport', 'Vancouver', 'British Columbia'),
+('JFK','John F. Kennedy International Airport', 'New York', 'New York'),
+('PEK','Beijing Capital International Airport', 'Toronto', 'Ontario')
+;
+
+insert into flight values
+('023', '018', 'G-CAAA', '06:45:00', '06:45:00', '10:45:00', '10:45:00', 'YYZ','YVR'),
+('359', '014', 'G-IAAA', '09:45:00', '09:45:00', ' 12:30:00', '12:30:00', 'YVR','YYZ'),
+('576', '001', 'N100AB', '12:45:00', '12:48:00', '17:45:00', '21:45:00', 'JFK','YVR'),
+('047', '023', 'N646RX', '14:45:00', '14:46:23', '14:45:00', '14:45:00', 'JFK','PEK')
+;
+
+insert into flightDay values
+('018','023', 'Monday'),
+('018','023', 'Tuesday'),
+('018','023', 'Thursday'),
+('018','023', 'Sunday'),
+('014', '359', 'Thursday'),
+('014', '359', 'Friday'),
+('014', '359', 'Saturday'),
+('001', '576', 'Tuesday'),
+('023', '047', 'Wednesday')
+;
+
+insert into supports values
+('737', 'YYZ'),
+('737', 'YVR'),
+('747', 'YYZ'),
+('737', 'PEK'),
+('737', 'JFK'),
+('747', 'PEK'),
+('A220', 'YYZ'),
+('A220', 'YVR'),
+('A300', 'YYZ'),
+('A220', 'JFK'),
+('A300', 'JFK'),
+('A220', 'PEK'),
+('A300', 'PEK')
+;
