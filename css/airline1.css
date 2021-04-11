@@ -1,0 +1,82 @@
+body {
+	font-family: arial, sans-serif;
+	color: white;
+	height: 100%;
+	font-size: 22px;
+}
+html { 
+	height: 100%;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: black;
+}
+
+td, th {
+  border: 1px solid #000000;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: gray;
+}
+
+video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+h1,h2 {
+	color: white;
+	-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+h1{
+width: 100%;
+	
+}
+
+.btn {
+	background-color: darkgray;
+	border: none; 
+	padding: 10px 14px; 
+	cursor: pointer; 
+}
+
+.btn:hover {
+  background-color: gray;
+}
+
+
+.bg1 {
+  /* The image used */
+  background-image: url("../images/monkeyplane.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home1 {
+	width: 400px;
+	float: left;
+	display: inline-block;
+	margin-right: 10px;
+}
+.home2{
+	width: 500px;
+	display: inline-block;
+}
+
+.about1{
+  color: black;
+}

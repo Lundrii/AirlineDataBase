@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html class = "bg1">
+
+<head>
+<link rel = "stylesheet" type = "text/css" href = "css/airline2.css">	
+<meta charset="utf-8">
+<title>About</title>
+</head>
+
+<body>
+<?php
+include 'connectdb.php';
+?>
+
+<h1 class>Edhlund Airlines Consultant</h1>
+<a href = "Airline.php"><button class="btn"><i class="fa-home"></i> Home</button></a>
+<a href = "Flights.php"><button class="btn"><i class="fa-allflights"></i> Flights</button></a>
+<a href = "UpdateFlight.php"><button class="btn"><i class="fa-updateflight"></i> Modify</button></a>
+<a href = "About.html"><button class="btn"><i class="fa-about"></i> About</button></a>
+
+<p>
+<hr>
+</p>
+
+<p>
+Welcome To Jaden Edhlund's Airlines Consultant Webpage. In This about section, I will provide a brief outline of the pages' functionalities.
+<hr><br>
+</p>
+<p>
+First, We Begin on the Home page where the first two bullet points are addressed: <br>
+<ol>
+<li>Allow the user to select a day of the week and calculate and display the average number of seats available on all flights on that day.  For instance, if there are 3 flights on a Wednesday and flight 1 has 200 seats, flight 2 has 300 seats and flight 3 has 400 seats, the average number of seats would be 300 seats.</li>
+
+<li>allow the user to enter an airline code  and a day and display all the flights associated with the given airline that offer flights on the specified day.  Include the flight code, departing airport location (city) and the arriving airport location (city) for these flights.</li>
+</ol>
+<hr><br>
+</p>
+
+<p>
+Second, we continue with the 'Flights' page where the third point is addressed: <br>
+<ol>
+<li>show all the flights (flight code and arrival time) with scheduled arrival times the same as the actual arrival times.</li>
+</ol>
+<hr><br>
+</p>
+
+<p>
+Last, We Move Onto the 'Modify' page where the final two bullet points are addressed: <br>
+<ol>
+<li>Allow the user to update the actual departure time of a flight.  The user should choose from a list of flight codes, enter a new time and the information in the table should be updated.</li>
+
+<li>Allow a user to add a new flight by displaying the airlines that are in your database and allowing them to choose an airline, displaying the airports in your database and allowing them to choose both the departure and the arrival airport for this flight.  Have them enter any other relevant information such as the flight number and the days of the week on which the flight is offered.</li>
+</ol>
+<hr><br>
+</p>
+</body>
+</html>
